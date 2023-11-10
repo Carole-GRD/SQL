@@ -1,0 +1,16 @@
+
+
+// connexion à la DB
+require 'sqlconnect.php'; 
+
+// stockage de la requête dans variable
+$sql = 'SELECT * FROM membres'; 
+
+// on effectue la requête
+$req = $pdo->query($sql);
+
+// on affiche ligne par ligne les résultats
+while($row = $req->fetch()) {
+    echo '<a href="membre-'.$row['id'].'.html">'.$row['pseudo'].'</a><br/>';
+}
+$req->closeCursor();

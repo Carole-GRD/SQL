@@ -1,0 +1,10 @@
+
+// Les requêtes préparées sur php.net
+https://www.php.net/manual/fr/pdo.prepared-statements.php
+
+// PDO sur la bible PHP.net (ça peut faire peur mais c’est court et très bien documenté)
+https://www.php.net/manual/fr/book.pdo.php
+
+
+// closeCursor sur PHP.net
+https://www.php.net/manual/fr/pdostatement.closecursor.php

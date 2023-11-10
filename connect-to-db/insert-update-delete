@@ -1,0 +1,12 @@
+
+// page où on fait la connexion à la DB
+require 'sqlconnect.php'; 
+
+// on place la requête SQL dans une variable
+$sql = 'DELETE FROM accounts WHERE type = "member"';
+
+// on execute la requête
+$nb = $pdo->exec($sql);
+
+// on affiche
+echo $nb.' membres ont été supprimés.';
