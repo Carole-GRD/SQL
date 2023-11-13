@@ -86,3 +86,9 @@ SET school = CASE
 END;
 
 SELECT * FROM school;
+
+
+-- fonction GROUP_CONCAT()
+SELECT school, GROUP_CONCAT(prenom SEPARATOR ', ') AS students_list
+FROM students
+GROUP BY school;
