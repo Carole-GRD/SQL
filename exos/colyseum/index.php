@@ -4,8 +4,7 @@
     require 'PHP/connectDB.php';
     $bdd = connectDB();
 
-    
-    require 'PHP/select.php';
+    require 'PHP/crud1.php';
     $arrAllClients = selectAllClients($bdd);    
     $arrAllShows = selectAllShows($bdd);
     $arrFirstClients = selectFirstClients($bdd);    
