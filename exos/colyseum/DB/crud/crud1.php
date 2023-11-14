@@ -31,7 +31,7 @@ function selectAllShows($bdd) {
     $query = 'SELECT * FROM shows;';
     $stmtSelect = $bdd->query($query);
     // Compiler et exécuter la requête
-    $arrAllShows = $stmtSelect->fetchAll();
+    $arrAllShows = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
         
     return $arrAllShows;
 }

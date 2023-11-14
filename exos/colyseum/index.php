@@ -17,6 +17,7 @@
     // Inclue les exos crud2
     require 'DB/crud/crud2-exo1.php';
     require 'DB/crud/crud2-exo2.php';
+    require 'DB/crud/crud2-exo3.php';
 
     // Inclue les vues 
     require 'views/index.php';
