@@ -10,6 +10,7 @@
     <?php
         // require 'crud1.php';
         require 'crud2-exo1.php';
+        require 'crud2-exo2.php';
     ?>
 
 

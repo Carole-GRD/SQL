@@ -1,24 +1,10 @@
-<?php
-    function selectClients($bdd) {
-        // Prépare la requête SELECT
-        $query = 'SELECT * FROM clients;';
-        $stmtSelect = $bdd->query($query);
-        // Compiler et exécuter la requête
-        $arrAllClients = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
-            
-        return $arrAllClients;
-    }
-?>
-
-
-
 <h2>Ajouter un client</h2>
 
 
 <!-- Formulaire pour ajouter un nouveaux client -->
 <form method="post" action="../DB/crud/crud2-exo1.php">
     <div>
-        <input type="text" name="lastName" id="" placeholder="Lastname" required>
+        <input type="text" name="lastName" id="" placeholder="Lastname" >
     </div>
     <div>
         <input type="text" name="firstName" id="" placeholder="Firstname" required>
