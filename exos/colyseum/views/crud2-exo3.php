@@ -1,16 +1,19 @@
 <?php
 
     // Get all shows from the database
+    // Récupérer tous les spectacles depuis la base de données
     $query = 'SELECT * FROM shows;';
     $stmtSelect = $bdd->query($query);
     $arrAllShows = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
 
     // Get all genres from the database
+    // Récupérer tous les genres depuis la base de données
     $query = 'SELECT * FROM genres;';
     $stmtSelect = $bdd->query($query);
     $arrAllGenres = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
 
     // Get all show types from the database
+    // Récupérer tous les types de spectacles depuis la base de données
     $query = 'SELECT * FROM showTypes;';
     $stmtSelect = $bdd->query($query);
     $arrShowTypes = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
@@ -47,6 +50,7 @@
     <div>
         <select name="secondGenreId" id="secondGenreId">
             <option value="">Choose a second genre...</option>
+
         </select>
     </div>
     <div>
@@ -91,7 +95,6 @@
         <?php } ?>
     });
 </script>
-
 
 
 <h1>All Shows</h1>

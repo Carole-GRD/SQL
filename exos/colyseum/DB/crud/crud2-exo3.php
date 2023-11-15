@@ -1,5 +1,4 @@
 <?php
-    // TODO: à corriger pour les valeurs insérées "firstGenresId" et "secondGenreId" ne sont pas correctes !
     
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +12,8 @@
 | et clubbing (secondGenreId : 10) qui dure 3 heures et qui commence à 21h.
 |
 */
+
+// Fonction de nettoyage des chaînes de caractères
 function sanitizeString3($string) {
     $trim_string = trim($string);
     $stripslashes_string = stripslashes($trim_string);
@@ -20,6 +21,7 @@ function sanitizeString3($string) {
     return $cleaned_string;
 }
 
+// Fonction pour formater le temps
 function formatTime($time) {
     // Utiliser la classe DateTime pour valider et formater le temps
     $dateTime = DateTime::createFromFormat('H:i', $time);
@@ -38,21 +40,16 @@ function formatTime($time) {
 // Vérifie si le formulaire a été soumis en utilisant la méthode POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Sanitization et validation
+    // Sanitization et validation des entrées du formulaire
     $title = sanitizeString3($_POST['title'] ?? '');
     $performer = sanitizeString3($_POST['performer'] ?? '');
     $date = isset($_POST['date']) ? new DateTime(trim($_POST['date'])) : null;
     $date = $date ? $date->format('Y-m-d') : null;
-    $showTypesId = isset($_POST['showTypesId']) ?? $_POST['showTypesId'];
-    $firstGenresId = isset($_POST['firstGenresId']) ?? $_POST['firstGenresId'];
-    $secondGenreId = isset($_POST['secondGenreId']) ?? $_POST['secondGenreId'];
-    // $duration = isset($_POST['duration']) ? new DateTime(trim($_POST['duration'])) : null;
-    // $duration = $duration ? $duration->format('H:i:s') : null;
-    // $startTime = isset($_POST['startTime']) ? new DateTime(trim($_POST['startTime'])) : null;
-    // $startTime = $startTime ? $startTime->format('H:i:s') : null;
+    $showTypesId = isset($_POST['showTypesId']) ? $_POST['showTypesId'] : null;
+    $firstGenresId = isset($_POST['firstGenresId']) ? $_POST['firstGenresId'] : null;
+    $secondGenreId = isset($_POST['secondGenreId']) ? $_POST['secondGenreId'] : null;
     $duration = isset($_POST['duration']) ? formatTime($_POST['duration']) : null;
     $startTime = isset($_POST['startTime']) ? formatTime($_POST['startTime']) : null;
-
 
     // Inclue le fichier de connexion à la base de données
     require '../connectDB.php';
@@ -60,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         //   =========================    CONCERNANT le nouveau spectacle =========================
-        // Prépare la requête
+        // Prépare la requête d'insertion du spectacle
         $queryShow = 'INSERT INTO shows (title, performer, date, showTypesId, firstGenresId, secondGenreId, duration, startTime)
         VALUES (:title, :performer, :date, :showTypesId, :firstGenresId, :secondGenreId, :duration, :startTime)';
         $stmtInsertShow = $bdd->prepare($queryShow);
@@ -75,11 +72,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmtInsertShow->bindParam(':duration', $duration, PDO::PARAM_STR);
         $stmtInsertShow->bindParam(':startTime', $startTime, PDO::PARAM_STR);
 
-        // Compile et exécute la requête pour insérer le client
+        // Compile et exécute la requête pour insérer le spectacle
         $stmtInsertShow->execute();
 
 
-        // Redirige vers la page d'accueil après l'ajout du client
+        // Redirige vers la page d'accueil après l'ajout du spectacle
         header('Location: /');
         exit;
 
